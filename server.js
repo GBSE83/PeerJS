@@ -2,11 +2,11 @@ const express = require('express');
 const { PeerServer } = require('peer');
 
 const app = express();
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 9000; // ✅ Usa el puerto de Render o 9000 en local
 
-// Configuración del servidor PeerJS
+// Configura PeerServer en el mismo puerto que Express
 const peerServer = PeerServer({
-  port: PORT,
+  port: PORT, // ⚠️ Importante: mismo puerto que el servidor web
   path: '/myapp',
   allow_discovery: true,
 });
@@ -16,5 +16,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`PeerJS Server running on port ${PORT}`);
+  console.log(`Servidor PeerJS ejecutándose en puerto ${PORT}`);
 });
